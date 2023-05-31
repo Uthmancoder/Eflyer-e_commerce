@@ -1,0 +1,273 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.background {
+  width: 100%;
+  float: left;
+  background-image: url(https://img.freepik.com/free-photo/black-friday-elements-assortment_23-2149074076.jpg?size=626&ext=jpg);
+  height: 80vh;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.text{
+  font-size: 50px;
+}
+
+.Ultimate {
+  display: none;
+}
+
+.custom_menu {
+  width: 85%;
+  margin: 0 auto;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  left: 8%;
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 3% 100%);
+}
+
+
+.custom_menu ul {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+}
+
+.custom_menu li {
+  float: left;
+  font-size: 16px;
+  color: #f1f1f1;
+  padding: 6px 10px 0px 10px;
+  text-decoration: none;
+  list-style-type: none;
+
+}
+
+.divv {
+  width: 27%;
+}
+
+.custom_menu li a {
+  color: #f1f1f1;
+  text-decoration: none;
+}
+
+.custom_menu li a:hover {
+  color: rgb(254, 190, 90);
+}
+
+
+.abs {
+  position: absolute;
+  top: 28%;
+}
+
+.cart-div {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.title {
+  position: absolute;
+  top: 15%;
+  font-size: 50px;
+}
+
+.buy {
+  position: absolute;
+  top: 75%;
+  font-size: 17px;
+  font-weight: bold;
+}
+@media (max-width: 800px) {
+  .custom_menu{
+   visibility: hidden;
+  }
+  .title{
+    position: absolute;
+    top: 2%;
+  }
+}
+.carousel-indicators{
+  width: 70%;
+  height: 10%;
+}
+
+.dd {
+  cursor: pointer;
+}
+
+.hidden-text {
+  display: none;
+}
+
+.hidden-text.show {
+  display: inline;
+}
+
+.search {
+  border: none;
+  outline: 5px rgb(254, 190, 90);
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  background-color: rgb(221, 90, 8);
+  color: white;
+}
+
+.ddd {
+  height: 400px;
+
+}
+
+.menu {
+  border: none;
+  background: none;
+  color: white;
+  margin-top: -17px;
+}
+
+.searchinp {
+  padding: 6px;
+  border-radius: 5px 0 0 5px;
+  border: none;
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.sect {
+  box-shadow: 50px 50px 0 0 #f1f1f1;
+}
+
+.footer {
+  background-color: #2d2a2a;
+  padding: 30px 0;
+  color: #f1f1f1;
+}
+
+.footer-title {
+  color: #eae5e5;
+}
+
+.footer-links li,
+.footer-social-links li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.footer-links a,
+.footer-social-links a {
+  color: #f7f6f6;
+  text-decoration: none;
+}
+
+.footer-links a:hover,
+.footer-social-links a:hover {
+  color: #f2efef;
+}
+
+@media (max-width: 768px) {
+  .footer {
+      text-align: center;
+  }
+
+  .footer-title {
+      margin-bottom: 20px;
+  }
+
+  .footer-links,
+  .footer-social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+
+  .footer-links li,
+  .footer-social-links li {
+      margin-right: 15px;
+  }
+  .background{
+    width: 100%;
+    float: left;
+    background-image: url(https://img.freepik.com/free-photo/flat-lay-black-friday-tags-with-shopping-cart_23-2148285102.jpg?size=626&ext=jpg&ga=GA1.1.1567510239.1685567548&semt=ais);
+    height: 50vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.sidenav {
+  width: 20%;
+  height: 100vh;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-color: rgb(33, 37, 41);
+  color: white;
+  text-align: center;
+  animation-duration: 2s;
+  display: none;
+}
+
+.cancel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: ghostwhite;
+}
+
+.cancel:hover {
+  color: white;
+}
+.coct{
+  display: flex;
+  justify-content: space-evenly;
+}
