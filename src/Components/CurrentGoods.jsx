@@ -74,7 +74,7 @@ const CurrentGoods = () => {
                         ></button>
                       </div>
                       <div className="modal-body">
-                        
+                        <img className="img-fluid" src={selectedCategory.image}/>
                       </div>
                       <div className="modal-footer">
                         <button

@@ -1,122 +1,219 @@
-import React, { useEffect, useState } from 'react';
-import { AiOutlineMenu, AiOutlineSearch } from 'react-icons/ai';
-import { RiAccountCircleLine } from 'react-icons/ri';
-import { BsCart3 } from 'react-icons/bs';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { Carousel } from 'bootstrap';
+import React, { useEffect, useState } from "react";
+import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
+import { BsFillPersonFill, BsCart4 } from "react-icons/bs";
+import { FiHelpCircle } from "react-icons/fi";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { Carousel } from "bootstrap";
 
 const BackgroundImg = () => {
   useEffect(() => {
     function handleMenuClick() {
-      const sidebar = document.querySelector('.sidenav');
-      sidebar.style.display = 'block';
+      const sidebar = document.querySelector(".sidenav");
+      sidebar.style.display = "block";
     }
 
     function handleCancelClick() {
-      const sidebar = document.querySelector('.sidenav');
-      sidebar.classList.remove('animate__bounceInLeft');
-      sidebar.classList.add('animate__bounceOutLeft');
-      sidebar.style.animationDuration = '2s';
+      const sidebar = document.querySelector(".sidenav");
+      sidebar.classList.remove("animate__bounceInLeft");
+      sidebar.classList.add("animate__bounceOutLeft");
+      sidebar.style.animationDuration = "2s";
       setTimeout(() => {
-        sidebar.style.display = 'none';
+        sidebar.style.display = "none";
       }, 2000);
     }
 
-    document.querySelector('.menu')?.addEventListener('click', handleMenuClick);
-    document.querySelector('.cancel')?.addEventListener('click', handleCancelClick);
+    document.querySelector(".menu")?.addEventListener("click", handleMenuClick);
+    document
+      .querySelector(".cancel")
+      ?.addEventListener("click", handleCancelClick);
 
     return () => {
-      document.querySelector('.menu')?.removeEventListener('click', handleMenuClick);
-      document.querySelector('.cancel')?.removeEventListener('click', handleCancelClick);
+      document
+        .querySelector(".menu")
+        ?.removeEventListener("click", handleMenuClick);
+      document
+        .querySelector(".cancel")
+        ?.removeEventListener("click", handleCancelClick);
     };
   }, []);
 
-  
-
   useEffect(() => {
-    const carousel = new Carousel(document.getElementById('carouselExampleIndicators'));
+    const carousel = new Carousel(
+      document.getElementById("carouselExampleIndicators")
+    );
     return () => {
       carousel.dispose();
     };
   }, []);
 
-
- 
-
-
+  useEffect(() => {
+    function handleScroll() {
+      const newnav = document.querySelector(".newnav");
+      const threshold = window.innerHeight * 0.3;
+  
+      if (window.scrollY >= threshold) {
+        newnav.classList.add("fixed");
+        document.querySelector(".newnav").style.backgroundColor = "rgb(255, 157, 34)"
+        document.querySelector(".input").style.backgroundColor = "white"
+        document.querySelector(".input").style.color = "black"
+        document.querySelector(".inp").style.color = "black"
+      } else {
+        newnav.classList.remove("fixed");
+        document.querySelector(".newnav").style.background = "none"
+      }
+    }
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
   
 
   return (
     <div>
       {/* Navigation */}
       <nav>
-        <div id='navbar' className='custom_menu bg-dark p-3 mx-auto d-flex align-items-center justify-content-around px-3'>
+        <div
+          id="navbar"
+          className="custom_menu bg-dark p-3 mx-auto d-flex align-items-center justify-content-around px-3"
+        >
           <ul>
-            <li className='mx-2'>
-              <a href='#'>Best Sellers</a>
+            <li className="mx-2">
+              <a href="#">Best Sellers</a>
             </li>
-            <li className='mx-2'>
-              <a href='#'>Gift Ideas</a>
+            <li className="mx-2">
+              <a href="#">Gift Ideas</a>
             </li>
-            <li className='mx-2'>
-              <a href='#'>New Releases</a>
+            <li className="mx-2">
+              <a href="#">New Releases</a>
             </li>
-            <li className='mx-2'>
-              <a href='#'>Today's Deals</a>
+            <li className="mx-2">
+              <a href="#">Today's Deals</a>
             </li>
-            <li className='mx-2'>
-              <a href='#'>Customer Service</a>
+            <li className="mx-2">
+              <a href="#">Customer Service</a>
             </li>
           </ul>
         </div>
       </nav>
 
       {/* Carousel */}
-      <div id="carouselExampleIndicators" className="carousel slide background" data-bs-ride="carousel">
-      <h1 className='title text-light fw-bolder '>Eflyer</h1>
-  <div className="carousel-indicators">
- 
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <h1 class="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">Get started with
-                        your favorite shopping</h1>
-                </div>
-                <div class="carousel-item">
-                    <h1 class="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">Get started with
-                        your favorite shopping</h1>
-                </div>
-                <div class="carousel-item">
-                    <h1 class="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">Get started with
-                        your favorite shopping</h1>
-                </div>
+      <div
+        id="carouselExampleIndicators"
+        className="carousel slide background"
+        data-bs-ride="carousel"
+      >
+        <div className="title w-100 container ">
+          <div className="d-flex align-items-center newnav justify-content-evenly ">
+            <div className="d-flex align-items-center">
+              <button className="btn btn text-light fs-2 menu">
+                <AiOutlineMenu />
+              </button>
+              <h1 className="logo fw-bolder text-light">Eflyer</h1>
             </div>
-  <button className="carousel-control-prev " type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
-  </button>
-  <button className='btn btn-dark buy py-2 px-4 fw-bold'>Buy Now</button>
-</div>
-
-
-      {/* Sidebar */}
-      <div className='sidenav animate__animated animate__bounceInLeft'>
-        {/* Sidebar content */}
+            <div className="d-flex align-items-center w-50">
+              <div className="input w-100 rounded-2 d-flex align-items-center">
+                <span className="fs-5 fw-bolder mx-1"><AiOutlineSearch /></span>
+                <input
+                  type="search"
+                  name="searchitems"
+                  id="search"
+                  className="border-0 w-100 inp bg-none p-2"
+                  placeholder="Search products, brands and category"
+                />
+              </div>
+              <button className="btn btn-light mx-3">Search</button>
+            </div>
+            <div title="Account" className="d-flex text-light align-items-center">
+             <span className="fs-4 fw-bolder mx-1"> <BsFillPersonFill /></span>
+              Account
+            </div>
+            <div title="Help" className="d-flex text-light align-items-center">
+              <span className="fs-5 fw-bolder mx-1 "><FiHelpCircle /></span>
+              Help
+            </div>
+            <div title="Cart" className="d-flex text-light align-items-center">
+              <span className="fs-5 fw-bolder mx-1 "><BsCart4 /></span>
+              Cart
+            </div>
+          </div>
+        </div>
+        <div className="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            className="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <h1 class="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">
+              Get started with your favorite shopping
+            </h1>
+          </div>
+          <div class="carousel-item">
+            <h1 class="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">
+              Get started with your favorite shopping
+            </h1>
+          </div>
+          <div class="carousel-item">
+            <h1 class="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">
+              Get started with your favorite shopping
+            </h1>
+          </div>
+        </div>
+        <button
+          className="carousel-control-prev "
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+        <button className="btn btn-dark buy py-2 px-4 fw-bold">Buy Now</button>
       </div>
 
-     
+      {/* Sidebar */}
+      <div className="sidenav animate__animated animate__bounceInLeft">
+        {/* Sidebar content */}
+      </div>
     </div>
   );
 };
-
-
 
 export default BackgroundImg;
