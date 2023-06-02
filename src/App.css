@@ -176,6 +176,27 @@
   color: white;
   margin-top: -17px;
 }
+.sidenav {
+  width: 20%;
+  height: 100vh;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: rgb(33, 37, 41);
+  color: white;
+  text-align: center;
+  animation-duration: 2s;
+  display: none;
+}
+/* .menu:focus-within .sidenav{
+  display: block;
+}
+.cancel:focus-within .sidenav{
+  display: none;
+} */
+
 
 .searchinp {
   padding: 6px;
@@ -250,20 +271,7 @@
   }
 }
 
-.sidenav {
-  width: 20%;
-  height: 100vh;
-  text-align: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99;
-  background-color: rgb(33, 37, 41);
-  color: white;
-  text-align: center;
-  animation-duration: 2s;
-  display: none;
-}
+
 
 .cancel {
   position: absolute;
@@ -280,8 +288,8 @@
   justify-content: space-evenly;
 }
 .input{
-  border: 2px inset grey;
-  background-color: #282c34;
+  border: 2px inset rgb(164, 161, 161);
+  background-color: #f1f1f1;
   color: rgb(89, 84, 84);
 }
 .inp{

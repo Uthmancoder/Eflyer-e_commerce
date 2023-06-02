@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 import { BsFillPersonFill, BsCart4 } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import { FiHelpCircle } from "react-icons/fi";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { Carousel } from "bootstrap";
+import * as bootstrap from "bootstrap";
 
-const BackgroundImg = () => {
+const BackgroundImg = (props) => {
   useEffect(() => {
+    const sidebar = document.querySelector(".sidenav");
     function handleMenuClick() {
-      const sidebar = document.querySelector(".sidenav");
       sidebar.style.display = "block";
     }
 
@@ -38,40 +38,42 @@ const BackgroundImg = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const carousel = new Carousel(
-      document.getElementById("carouselExampleIndicators")
-    );
-    return () => {
-      carousel.dispose();
-    };
-  }, []);
+  // useEffect(() => {
+  //   const carousel = new bootstrap.Carousel(
+  //     document.getElementById("carouselExampleIndicators")
+  //   );
+
+  //   return () => {
+  //     carousel.dispose();
+  //   };
+  // }, []);
 
   useEffect(() => {
     function handleScroll() {
       const newnav = document.querySelector(".newnav");
       const threshold = window.innerHeight * 0.3;
-  
+
       if (window.scrollY >= threshold) {
         newnav.classList.add("fixed");
-        document.querySelector(".newnav").style.backgroundColor = "rgb(255, 157, 34)"
-        document.querySelector(".input").style.backgroundColor = "white"
-        document.querySelector(".input").style.color = "black"
-        document.querySelector(".inp").style.color = "black"
+        document.querySelector(".newnav").style.backgroundColor =
+          "rgb(255, 157, 34)";
+        document.querySelector(".input").style.backgroundColor = "white";
+        document.querySelector(".input").style.color = "black";
+        document.querySelector(".inp").style.color = "black";
       } else {
         newnav.classList.remove("fixed");
-        document.querySelector(".newnav").style.background = "none"
+        document.querySelector(".newnav").style.background = "none";
       }
     }
-  
+
     window.addEventListener("scroll", handleScroll);
-  
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
-  
+
+  const classes = "carousel slide background " + props.className;
 
   return (
     <div>
@@ -113,11 +115,46 @@ const BackgroundImg = () => {
               <button className="btn btn text-light fs-2 menu">
                 <AiOutlineMenu />
               </button>
+              {/* Sidebar */}
+              <div className="sidenav animate__animated animate__bounceInLeft text-start p-4">
+                <button className="btn btn cancel fs-3">&times;</button>
+                <h5 className="mt-5">
+                  <Link to="/" className="my-5 fs-5 fw-bolder text-light ">
+                    Home
+                  </Link>
+                </h5>
+                <h5 className="my-4">
+                  <Link
+                    to="/mens-wear"
+                    className="my-5 fs-5 fw-bolder text-light"
+                  >
+                    Mens Wear
+                  </Link>
+                </h5>
+                <h5 className="my-4">
+                  <Link
+                    to="/womens-wear"
+                    className="my-5 fs-5 fw-bolder text-light"
+                  >
+                    Mens Wear
+                  </Link>
+                </h5>
+                <h5 className="my-4">
+                  <Link
+                    to="/electronics"
+                    className="my-5 fs-5 fw-bolder text-light"
+                  >
+                    Electronics
+                  </Link>
+                </h5>
+              </div>
               <h1 className="logo fw-bolder text-light">Eflyer</h1>
             </div>
             <div className="d-flex align-items-center w-50">
               <div className="input w-100 rounded-2 d-flex align-items-center">
-                <span className="fs-5 fw-bolder mx-1"><AiOutlineSearch /></span>
+                <span className="fs-5 fw-bolder mx-1">
+                  <AiOutlineSearch />
+                </span>
                 <input
                   type="search"
                   name="searchitems"
@@ -126,18 +163,28 @@ const BackgroundImg = () => {
                   placeholder="Search products, brands and category"
                 />
               </div>
-              <button className="btn btn-light mx-3">Search</button>
+              <button className="btn btn-danger mx-3">Search</button>
             </div>
-            <div title="Account" className="d-flex text-light align-items-center">
-             <span className="fs-4 fw-bolder mx-1"> <BsFillPersonFill /></span>
+            <div
+              title="Account"
+              className="d-flex text-light align-items-center"
+            >
+              <span className="fs-4 fw-bolder mx-1">
+                {" "}
+                <BsFillPersonFill />
+              </span>
               Account
             </div>
             <div title="Help" className="d-flex text-light align-items-center">
-              <span className="fs-5 fw-bolder mx-1 "><FiHelpCircle /></span>
+              <span className="fs-5 fw-bolder mx-1 ">
+                <FiHelpCircle />
+              </span>
               Help
             </div>
             <div title="Cart" className="d-flex text-light align-items-center">
-              <span className="fs-5 fw-bolder mx-1 "><BsCart4 /></span>
+              <span className="fs-5 fw-bolder mx-1 ">
+                <BsCart4 />
+              </span>
               Cart
             </div>
           </div>
@@ -164,19 +211,19 @@ const BackgroundImg = () => {
             aria-label="Slide 3"
           ></button>
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <h1 class="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <h1 className="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">
               Get started with your favorite shopping
             </h1>
           </div>
-          <div class="carousel-item">
-            <h1 class="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">
+          <div className="carousel-item">
+            <h1 className="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">
               Get started with your favorite shopping
             </h1>
           </div>
-          <div class="carousel-item">
-            <h1 class="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">
+          <div className="carousel-item">
+            <h1 className="text-center w-50 text-light shadow mx-auto my-auto fw-bolder  ">
               Get started with your favorite shopping
             </h1>
           </div>
@@ -206,11 +253,6 @@ const BackgroundImg = () => {
           <span className="visually-hidden">Next</span>
         </button>
         <button className="btn btn-dark buy py-2 px-4 fw-bold">Buy Now</button>
-      </div>
-
-      {/* Sidebar */}
-      <div className="sidenav animate__animated animate__bounceInLeft">
-        {/* Sidebar content */}
       </div>
     </div>
   );
