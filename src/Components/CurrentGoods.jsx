@@ -6,7 +6,6 @@ const CurrentGoods = () => {
   const [itemsToCart, setItemsToCart] = useState([]);
 
   useEffect(() => {
-    // Initialize itemsToCart with an array of zeros
     setItemsToCart(Array(goods.length).fill(0));
   }, [goods.length]);
 
@@ -28,13 +27,18 @@ const CurrentGoods = () => {
 
   const handleAddToCart = (index) => {
     setSelectedCategory({ ...goods[index] });
-    console.log(selectedCategory);
     setItemsToCart((prevItemsToCart) => {
       const updatedCart = [...prevItemsToCart];
       updatedCart[index] = 1; // Set the initial value to 1 for the selected item
+
       return updatedCart;
+      
     });
   };
+  useEffect(() => {
+    console.log(selectedCategory);
+  }, [selectedCategory])
+  
 
   const [selectedSize, setSelectedSize] = useState("");
 
@@ -75,6 +79,9 @@ const CurrentGoods = () => {
     console.log("quantity :", items);
     console.log(sizequant);
   }, [items, selectedSize]);
+  const ViewIncart =()=>{
+  alert("cool")
+  }
 
   const generateItems = (category) => {
     let counter = 0;
@@ -226,7 +233,7 @@ const CurrentGoods = () => {
                           </div>
                         </div>
 
-                        <button className="btn btn-dark my-3 p-2">
+                        <button onClick={ViewIncart} className="btn btn-dark my-3 p-2">
                           Add to view in cart
                         </button>
                       </div>

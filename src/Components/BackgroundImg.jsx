@@ -78,6 +78,9 @@ const BackgroundImg = (props) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const mediamenu = () => {
+    alert("cool");
+  };
 
   const classes = "carousel slide background " + props.className;
 
@@ -156,18 +159,21 @@ const BackgroundImg = (props) => {
               </div>
               <h1 className="logo fw-bolder text-light">Eflyer</h1>
             </div>
-            <div className="d-flex align-items-center sear">
-              <div className="input w-100 rounded-2 d-flex align-items-center">
-                <span className="fs-5 fw-bolder mx-1">
+            <div className="d-flex w-50 align-items-center sear">
+              <div className="input  rounded-2 d-flex align-items-center">
+                <span className="fs-5  searchlogo fw-bolder mx-1">
                   <AiOutlineSearch />
                 </span>
                 <input
                   type="search"
                   name="searchitems"
                   id="search"
-                  className="border-0 inp bg-none p-2"
+                  className="border-0 w-100 inp bg-none p-2"
                   placeholder="Search products, brands and category"
                 />
+                <button className="serch">
+                  <AiOutlineSearch />
+                </button>
               </div>
               <button className="btn btn-danger searchbtn mx-3">Search</button>
             </div>
@@ -182,7 +188,11 @@ const BackgroundImg = (props) => {
               </span>
               Account
             </div>
-            <div title="Help"  id="help" className="d-flex text-light align-items-center ">
+            <div
+              title="Help"
+              id="help"
+              className="d-flex text-light align-items-center "
+            >
               <span className="fs-5 fw-bolder mx-1 ">
                 <FiHelpCircle />
               </span>
@@ -202,10 +212,51 @@ const BackgroundImg = (props) => {
                 Cart
               </Link>
             </div>
+            <button
+              onClick={mediamenu}
+              className="btn btn-outline-light  fs-2  bigmenu"
+            >
+              <AiOutlineMenu
+                style={{ position: "absolute", top: "5px", left: "5px" }}
+              />
+            </button>
+            <div></div>
+          </div>
+        </div>
 
-            <div>
-              
-            </div>
+        <div className="mediamodal p-5">
+          <button className="cancelmod">&times;</button>
+          <div className="mediamodalcontent text-light m-3">
+            <h4 className="my-5 text-center">
+              <Link to="/mens-wear" className="my-3 text-light fs-4 link">
+                Men's Wear
+              </Link>
+            </h4>
+            <h4  className="my-5 text-center">
+              <Link to="/womens-wear" className="my-3 text-light fs-4 link">
+                Women's Wear
+              </Link>
+            </h4>
+            <h4  className="my-5 text-center">
+              <Link to="/electronics" className="my-3 text-light fs-4 link">
+                Electronics
+              </Link>
+            </h4>
+            <h4  className="my-5 text-center">
+              <Link to="/Help" className="my-3 text-light fs-4 link">
+              Account
+              </Link>
+            </h4>
+            <h4  className="my-5 text-center">
+              <Link to="/Help" className="my-3 text-light fs-4 link">
+              Accesories
+              </Link>
+            </h4>
+            <h4  className="my-5 text-center">
+              <Link to="/account" className="my-3 text-light fs-4 link">
+                Help
+              </Link>
+            </h4>
           </div>
         </div>
         <div className="carousel-indicators">
