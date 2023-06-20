@@ -24,7 +24,6 @@
       "category": "men's clothing",
       "title": "Correctshapers Varsity Jacket - White & Blue",
       "price": "₦9,000",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -45,7 +44,6 @@
       "category": "men's clothing",
       "title": "Correctshapers Varsity Jacket -Black And Wine",
       "price": "₦9,00",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -56,7 +54,6 @@
       "category": "men's clothing",
       "title": "Correctshapers Combat",
       "price": "₦9,000",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -77,7 +74,6 @@
       "category": "men's clothing",
       "title": "High Quality Business Formal Office Shirts - White",
       "price": "₦7,999",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -98,7 +94,6 @@
       "category": "men's clothing",
       "title": "Men's Long Sleeve Shirt",
       "price": "₦4,899",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -109,7 +104,6 @@
       "category": "men's clothing",
       "title": "Men's Stripe Long-sleeved Shirt",
       "price": "₦4,899",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -120,7 +114,6 @@
       "category": "women's clothing",
       "title": "Zuri Female Fitness Wear Set - Green",
       "price": "₦4,899",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -131,7 +124,6 @@
       "category": "women's clothing",
       "title": "Female Blazer - Pink",
       "price": "₦7,899",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -142,7 +134,6 @@
       "category": "women's clothing",
       "title": "Orange Dress",
       "price": "₦4,899",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -153,7 +144,6 @@
       "category": "women's clothing",
       "title": "Body Shape Wear - Nude",
       "price": "₦9,899",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -164,7 +154,6 @@
       "category": "women's clothing",
       "title": "ladies Jacket",
       "price": "₦5,899",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -175,7 +164,6 @@
       "category": "women's clothing",
       "title": "Turkish Wear Kaheenah Blue Jacket",
       "price": "₦14,899",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -186,7 +174,6 @@
       "category": "women's clothing",
       "title": "Shape Wear For Ladies - Green",
       "price": "₦4,899",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -197,7 +184,6 @@
       "category": "women's clothing",
       "title": "Men's Stripe Long-sleeved Shirt",
       "price": "₦4,899",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -208,7 +194,6 @@
       "category": "women's clothing",
       "title": "Forever Floral Designer Skirt Suit",
       "price": "₦4,899",
-
       "rating": {
         "rate": "3.9",
         "count": "120"
@@ -216,5 +201,5 @@
       "image": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/G/78157_1536106308.jpg"
     }
   ],
-  "newitems" :{}
+  "newitems": {}
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BackgroundImg from "./BackgroundImg";
+import Footer from "./Footer";
 
 const Menswear = () => {
   const [dataset, setDataset] = useState([]);
@@ -14,7 +15,7 @@ const Menswear = () => {
         const fakeStoreJsonData = await fakeStoreResponse.json();
 
         // Fetch data from the local JSON file
-        const localJsonResponse = await fetch("http://localhost:3000/Items");
+        const localJsonResponse = await fetch("http://localhost:1243/Items");
         const localJsonData = await localJsonResponse.json();
 
         // Combine the datasets
@@ -28,7 +29,7 @@ const Menswear = () => {
     };
 
     fetchData();
-  }, []);
+  }, [dataset]);
 
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -41,7 +42,7 @@ const Menswear = () => {
       // Filter items by category
       if (el.category === category) {
         return (
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3 mx-3 my-5" key={i}>
+          <div className="col-12 col-sm-4 col-md-4 col-lg-3 mx-3 my-5" key={i}>
             <div className="border ddd w-100 shadow rounded-2 px-2 pt-4 mx-2 text-center divv">
               <img className="img-fluid h-25" src={el.image} alt={el.title} />
               <h4 className="fw-bolder">{el.category}</h4>
@@ -57,7 +58,7 @@ const Menswear = () => {
 
               <button
                 type="button"
-                className="btn btn-warning text-light fw-bold"
+                className="btn btn-dark text-light fw-bold"
                 data-bs-toggle="modal"
                 data-bs-target={`#exampleModal${i}`}
                 onClick={() => handleAddToCart(el.category)}
@@ -115,7 +116,7 @@ const Menswear = () => {
   return (
     <div>
       {/* Item sections */}
-      <BackgroundImg />
+      <BackgroundImg className="mensbackground" />
       <div className="row container-fluid coct my-5">
         <div className="container">
           <h1 className="text-center fw-bolder fs-1">Men Casual Wears</h1>
@@ -124,6 +125,7 @@ const Menswear = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

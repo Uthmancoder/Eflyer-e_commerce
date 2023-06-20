@@ -4,9 +4,15 @@ import { BsFillPersonFill, BsCart4 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { FiHelpCircle } from "react-icons/fi";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useSelector } from "react-redux";
 import * as bootstrap from "bootstrap";
+import { increaseItem, decreaseItem } from "../Redux/MySlice";
 
 const BackgroundImg = (props) => {
+  const mystate = useSelector((state)=> state.mySlice)
+  console.log(mystate);
+  const items = mystate.Item
+  console.log(items);
   useEffect(() => {
     const sidebar = document.querySelector(".sidenav");
     function handleMenuClick() {
@@ -56,7 +62,7 @@ const BackgroundImg = (props) => {
       if (window.scrollY >= threshold) {
         newnav.classList.add("fixed");
         document.querySelector(".newnav").style.backgroundColor =
-          "rgb(255, 157, 34)";
+          "rgb(0, 17, 34)";
         document.querySelector(".input").style.backgroundColor = "white";
         document.querySelector(".input").style.color = "black";
         document.querySelector(".inp").style.color = "black";
@@ -106,7 +112,7 @@ const BackgroundImg = (props) => {
       {/* Carousel */}
       <div
         id="carouselExampleIndicators"
-        className="carousel slide background"
+        className={classes}
         data-bs-ride="carousel"
       >
         <div className="title w-100 container ">
@@ -136,7 +142,7 @@ const BackgroundImg = (props) => {
                     to="/womens-wear"
                     className="my-5 fs-5 fw-bolder text-light"
                   >
-                    Mens Wear
+                    Womens Wear
                   </Link>
                 </h5>
                 <h5 className="my-4">
@@ -181,7 +187,8 @@ const BackgroundImg = (props) => {
               </span>
               Help
             </div>
-            <div title="Cart" className="d-flex text-light align-items-center">
+            <div title="Cart" className="d-flex text-light cart align-items-center">
+              <span className="bg-danger cartitems text-light rounded-circle">{items}</span>
               <span className="fs-5 fw-bolder mx-1 ">
                 <BsCart4 />
               </span>
