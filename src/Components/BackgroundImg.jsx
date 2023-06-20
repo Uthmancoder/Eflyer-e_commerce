@@ -9,9 +9,9 @@ import * as bootstrap from "bootstrap";
 import { increaseItem, decreaseItem } from "../Redux/MySlice";
 
 const BackgroundImg = (props) => {
-  const mystate = useSelector((state)=> state.mySlice)
+  const mystate = useSelector((state) => state.mySlice);
   console.log(mystate);
-  const items = mystate.Item
+  const items = mystate.Item;
   console.log(items);
   useEffect(() => {
     const sidebar = document.querySelector(".sidenav");
@@ -87,7 +87,7 @@ const BackgroundImg = (props) => {
       <nav>
         <div
           id="navbar"
-          className="custom_menu bg-dark p-3 mx-auto d-flex align-items-center justify-content-around px-3"
+          className="custom_menu  p-3 mx-auto d-flex align-items-center justify-content-around px-3"
         >
           <ul>
             <li className="mx-2">
@@ -117,7 +117,7 @@ const BackgroundImg = (props) => {
       >
         <div className="title w-100 container ">
           <div className="d-flex align-items-center newnav justify-content-evenly ">
-            <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center ">
               <button className="btn btn text-light fs-2 menu">
                 <AiOutlineMenu />
               </button>
@@ -156,7 +156,7 @@ const BackgroundImg = (props) => {
               </div>
               <h1 className="logo fw-bolder text-light">Eflyer</h1>
             </div>
-            <div className="d-flex align-items-center w-50">
+            <div className="d-flex align-items-center sear">
               <div className="input w-100 rounded-2 d-flex align-items-center">
                 <span className="fs-5 fw-bolder mx-1">
                   <AiOutlineSearch />
@@ -165,15 +165,16 @@ const BackgroundImg = (props) => {
                   type="search"
                   name="searchitems"
                   id="search"
-                  className="border-0 w-100 inp bg-none p-2"
+                  className="border-0 inp bg-none p-2"
                   placeholder="Search products, brands and category"
                 />
               </div>
-              <button className="btn btn-danger mx-3">Search</button>
+              <button className="btn btn-danger searchbtn mx-3">Search</button>
             </div>
             <div
               title="Account"
-              className="d-flex text-light align-items-center"
+              id="account"
+              className="d-flex text-light align-items-center "
             >
               <span className="fs-4 fw-bolder mx-1">
                 {" "}
@@ -181,18 +182,29 @@ const BackgroundImg = (props) => {
               </span>
               Account
             </div>
-            <div title="Help" className="d-flex text-light align-items-center">
+            <div title="Help"  id="help" className="d-flex text-light align-items-center ">
               <span className="fs-5 fw-bolder mx-1 ">
                 <FiHelpCircle />
               </span>
               Help
             </div>
-            <div title="Cart" className="d-flex text-light cart align-items-center">
-              <span className="bg-danger cartitems text-light rounded-circle">{items}</span>
-              <span className="fs-5 fw-bolder mx-1 ">
-                <BsCart4 />
-              </span>
-              Cart
+            <div
+              title="Cart"
+              className="d-flex text-light cart align-items-center"
+            >
+              <Link to="/cart" className="cart">
+                <span className="bg-danger cartitems text-light rounded-circle">
+                  {items}
+                </span>
+                <span className="fs-5 fw-bolder mx-1 ">
+                  <BsCart4 />
+                </span>
+                Cart
+              </Link>
+            </div>
+
+            <div>
+              
             </div>
           </div>
         </div>

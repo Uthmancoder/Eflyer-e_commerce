@@ -83,6 +83,7 @@
   position: absolute;
   top: 0;
   z-index: 1;
+  background-color: #383737;
   left: 8%;
   clip-path: polygon(0 0, 100% 0, 96% 100%, 3% 100%);
 }
@@ -103,7 +104,9 @@
   list-style-type: none;
 
 }
-
+#search{
+  width: 100%;
+}
 .divv {
   width: 27%;
 }
@@ -114,7 +117,15 @@
 }
 
 .custom_menu li a:hover {
-  color: rgb(254, 190, 90);
+  color: rgb(220, 18, 18);
+}
+
+.cart{
+  color: white;
+  text-decoration: none;
+}
+.sear{
+  width: 50%;
 }
 
 
@@ -153,12 +164,7 @@
   font-size: 17px;
   font-weight: bold;
 }
-@media (max-width: 800px) {
-  .custom_menu{
-   visibility: hidden;
-  }
 
-}
 .carousel-indicators{
   width: 70%;
   height: 10%;
@@ -262,38 +268,7 @@
   height: 50%;
 }
 
-@media (max-width: 920px) {
-  .footer {
-      text-align: center;
-  }
 
-  .footer-title {
-      margin-bottom: 20px;
-  }
-
-  .footer-links,
-  .footer-social-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-  }
-
-  .footer-links li,
-  .footer-social-links li {
-      margin-right: 15px;
-  }
-  .background{
-    width: 100%;
-    float: left;
-    /* background-image: url(https://img.freepik.com/free-photo/flat-lay-black-friday-tags-with-shopping-cart_23-2148285102.jpg?size=626&ext=jpg&ga=GA1.1.1567510239.1685567548&semt=ais); */
-    height: 50vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
 .cart{
   position: relative;
 }
@@ -336,14 +311,7 @@
 .inp::placeholder{
   color: rgb(89, 84, 84);
 }
-@media (max-width : 800x) {
-  .newnav{
-    position: fixed;
-    top: 0;
-    background-color: rgb(255, 157, 34);
-    width: 100% ;
-  }
-}
+
 
 
 
@@ -384,5 +352,88 @@
   color: white;
   font-size: 20px;
   background-color: rgb(33, 37, 41);  
+}
+@media (max-width: 920px) {
+  .footer {
+      text-align: center;
+  }
+
+  .footer-title {
+      margin-bottom: 20px;
+  }
+
+  .footer-links,
+  .footer-social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+
+  .footer-links li,
+  .footer-social-links li {
+      margin-right: 15px;
+  }
+  .background{
+    width: 100%;
+    float: left;
+    /* background-image: url(https://img.freepik.com/free-photo/flat-lay-black-friday-tags-with-shopping-cart_23-2148285102.jpg?size=626&ext=jpg&ga=GA1.1.1567510239.1685567548&semt=ais); */
+    height: 50vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #account{
+  visibility: hidden;
+  }
+  #help{
+    visibility: hidden;
+  }
+  .cart{
+    visibility: hidden;
+  }
+  .newnav{
+    padding: 10px;
+  }
+  .menu{
+  visibility: hidden;
+  }
+
+  .logo{
+    position: absolute;
+    left: 2%;
+    top: 15%;
+  }
+  .sear{
+    width: 50%;
+    position: absolute;
+    top: 10%;
+  }
+  #search{
+  width: 150px;
+  left: 30%;
+  }
+  .searchbtn{
+   visibility: hidden;
+  }
+}
+@media (max-width: 800px) {
+  .custom_menu{
+   visibility: hidden;
+  }
+  .account{
+    display: none;
+  }
+  .help{
+    display: none;
+  }
+  .newnav{
+    position: fixed;
+    top: 0;
+    background-color: rgb(255, 157, 34);
+    width: 100% ;
+  }
+
 }
 
