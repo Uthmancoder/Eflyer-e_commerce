@@ -3,6 +3,9 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 
 const Cart = () => {
+
+  const cartItem = JSON.parse(localStorage.getItem("NewcartItems"))
+  console.log(cartItem);
   return (
     <div className="bg-light biggs">
       <NavBar />
@@ -10,10 +13,13 @@ const Cart = () => {
         <div className="card border-0 w-75 shoppingitems rounded-2 p-2 shadow">
             <h5 className="fw-bolder text-secondary">Cart </h5>
             <hr className="break text-secondary"/>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio
-          veniam, laudantium consequuntur blanditiis qui ex, dignissimos facere
-          et est tempora aspernatur voluptas delectus aliquid magni provident
-          repudiandae neque praesentium sint?
+           {cartItem && 
+              cartItem.map((el, i)=>{
+                 <div key={i}>
+                   <img src={el.image} className="w-25" alt="" />
+                   <p>{el.price}</p>
+                 </div>
+              })}
         </div>
         <div className="w-25 mx-2  checkout  m-2 shadow rounded-2 p-2">
             <h5>Cart Summary</h5>

@@ -1,46 +1,46 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increaseItem, decreaseItem } from "../Redux/MySlice";
+
 const CurrentGoods = () => {
   const [goods, setGoods] = useState([]);
   const [itemsToCart, setItemsToCart] = useState([]);
-
-  useEffect(() => {
-    setItemsToCart(Array(goods.length).fill(0));
-  }, [goods.length]);
-
+  const [selectedCategory, setSelectedCategory] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.mySlice);
-  console.log(state);
   const items = state.Item;
-  console.log(items);
+  const [selectedSize, setSelectedSize] = useState("");
+  const [sizeandQuantity, setSizeandQuantity] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState("");
+  const [updatedCart, setupdatedCart] = useState("")
+
+  // Fetching Items from the database
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((jsonData) => {
         setGoods(jsonData);
+        setItemsToCart(Array(jsonData.length).fill(0)); // Initialize itemsToCart with an array of zeros
         console.log(jsonData);
       });
   }, []);
 
-  const [selectedCategory, setSelectedCategory] = useState([]);
-
+  // Open Modal to add to cart
   const handleAddToCart = (index) => {
     setSelectedCategory({ ...goods[index] });
+    setSelectedIndex(index); // Store the selected index
     setItemsToCart((prevItemsToCart) => {
       const updatedCart = [...prevItemsToCart];
-      updatedCart[index] = 1; // Set the initial value to 1 for the selected item
-
+      updatedCart[index] = 0;
       return updatedCart;
-      
     });
   };
+
+  // Logging selected category & selected size
   useEffect(() => {
     console.log(selectedCategory);
-  }, [selectedCategory])
-  
-
-  const [selectedSize, setSelectedSize] = useState("");
+  }, [selectedCategory]);
 
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
@@ -50,7 +50,8 @@ const CurrentGoods = () => {
     console.log("selectedSize :", selectedSize);
   }, [selectedSize]);
 
-  const increraseQuantity = (index) => {
+  // Increase items
+  const increaseQuantity = (index) => {
     dispatch(increaseItem());
     setItemsToCart((prevItemsToCart) => {
       const updatedCart = [...prevItemsToCart];
@@ -59,7 +60,7 @@ const CurrentGoods = () => {
     });
   };
 
-  const reduceQuantity = (index) => {
+  const decreaseQuantity = (index) => {
     if (itemsToCart[index] > 0) {
       dispatch(decreaseItem());
       setItemsToCart((prevItemsToCart) => {
@@ -70,19 +71,37 @@ const CurrentGoods = () => {
     }
   };
 
-  const [sizeandQuantity, setsizeandQuantity] = useState([]);
-
   useEffect(() => {
-    const sizequant = { "selectedSize ": selectedSize, quantity: items };
-    setsizeandQuantity(sizequant);
-    localStorage.setItem("size&Quantity", JSON.stringify(sizeandQuantity));
-    console.log("quantity :", items);
-    console.log(sizequant);
-  }, [items, selectedSize]);
-  const ViewIncart =()=>{
-  alert("cool")
-  }
+    const selectedImage = goods[selectedIndex]?.image;
+    const sizeQuant = [
+      {
+        selectedSize: selectedSize,
+        quantity: itemsToCart[selectedIndex] ,
+        image: selectedImage,
+      },
+    ];
+    setSizeandQuantity(sizeQuant);
+    localStorage.setItem("size&Quantity", JSON.stringify(sizeQuant));
+  }, [items, selectedSize, goods, selectedIndex]);
 
+  const viewInCart = (index) => {
+    const selectedItem = goods[selectedIndex];
+    const newItem = {
+      image: selectedItem.image,
+      price: selectedItem.price,
+      selectedSize: selectedSize,
+      quantity: itemsToCart[selectedIndex],
+      description: selectedItem.title,
+    };
+    console.log(newItem);
+  
+    // Save the new item to localStorage
+    const updatedItems = JSON.parse(localStorage.getItem("NewcartItems")) || [];
+    updatedItems.push(newItem);
+    localStorage.setItem("NewcartItems", JSON.stringify(updatedItems));
+  };
+  
+  
   const generateItems = (category) => {
     let counter = 0;
     return goods.map((el, i) => {
@@ -112,7 +131,7 @@ const CurrentGoods = () => {
                   className="btn btn-dark text-light fw-bold"
                   data-bs-toggle="modal"
                   data-bs-target={`#exampleModal${i}`}
-                  onClick={() => handleAddToCart(el.category)}
+                  onClick={() => handleAddToCart(i)}
                 >
                   Add to cart
                 </button>
@@ -215,7 +234,7 @@ const CurrentGoods = () => {
                           <h5 className="fs-5 fw-bold">Quantity :</h5>
                           <div className="d-flex align-items-center">
                             <button
-                              onClick={() => reduceQuantity(i)}
+                              onClick={() => decreaseQuantity(i)}
                               className="addmore"
                             >
                               -
@@ -225,7 +244,7 @@ const CurrentGoods = () => {
                             </h5>
 
                             <button
-                              onClick={() => increraseQuantity(i)}
+                              onClick={() => increaseQuantity(i)}
                               className="addmore"
                             >
                               +
@@ -233,7 +252,10 @@ const CurrentGoods = () => {
                           </div>
                         </div>
 
-                        <button onClick={ViewIncart} className="btn btn-dark my-3 p-2">
+                        <button
+                          onClick={() => viewInCart(i)} // Pass the index value
+                          className="btn btn-dark my-3 p-2"
+                        >
                           Add to view in cart
                         </button>
                       </div>
