@@ -7,6 +7,9 @@ import WomensWear from "./Components/WomensWear";
 import TextPage from "./Components/TextPage";
 import Cart from "./Components/Cart";
 import Signup from "./Components/Signup";
+import "react-toastify/dist/ReactToastify.css";
+import Login from "./Components/Login";
+
 
 function App() {
   return (
@@ -18,6 +21,7 @@ function App() {
         <Route path="/text" element={<TextPage/>} />
       <Route path="/cart" element={<Cart/>} />
       <Route path="/signup" element={<Signup/>} />
+      <Route path="/login" element={<Login/>} />
       </Routes>
     </div>
   );

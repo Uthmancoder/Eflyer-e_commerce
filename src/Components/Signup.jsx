@@ -10,7 +10,7 @@ const SignUser = () => {
 
   useEffect(() => {
   axios
-    .get("http://localhost:1259/getUser")
+    .get("http://localhost:1243/users")
     .then((res) => res.data)
     .then((data) => {
       setcurrentdata(data);
@@ -60,7 +60,7 @@ const SignUser = () => {
         toast.error("Username already in use");
       } else {
         axios
-          .post("http://localhost:1259/getUser", values)
+          .post("http://localhost:1243/users", values)
           .then((res) => {
             console.log(res);
             toast.success("Registration Successful");
@@ -77,11 +77,11 @@ const SignUser = () => {
   console.log(formik.errors);
 
   return (
-    <div>
+    <div className="signup_div bg-dark pt-5">
       <form
         onSubmit={formik.handleSubmit}
         action=""
-        className="form rounded-3 bg-light shadow mx-auto mt-5 rounded-2 shadow p-3"
+        className="form rounded-3 bg-light shadow mx-auto  rounded-2 shadow p-3"
       >
         <h1 className="text-light header text-center fw-bolder fs-1">Sign Up</h1>
         <div>
