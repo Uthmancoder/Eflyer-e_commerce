@@ -2,12 +2,16 @@ import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillPersonFill, BsCart4 } from "react-icons/bs";
 import { FiHelpCircle } from "react-icons/fi";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
+  const cartItem = JSON.parse(localStorage.getItem("NewcartItems"));
+  const itemLength = cartItem ? cartItem.length : 0;
+
   const mystate = useSelector((state) => state.mySlice);
-  console.log(mystate);
+  // console.log(mystate);
   const items = mystate.Item;
+
   return (
     <div className="w-100 bg-dark d-flex align-items-center justify-content-evenly">
       <div className="">
@@ -28,9 +32,8 @@ const NavBar = () => {
         </div>
         <button className="btn btn-danger mx-3">Search</button>
       </div>
-      <div title="Account" className="d-flex text-light align-items-center">
+      <div title="Account" className="d-flex text-light account align-items-center">
         <span className="fs-4 fw-bolder mx-1">
-          {" "}
           <BsFillPersonFill />
         </span>
         Account
@@ -41,15 +44,27 @@ const NavBar = () => {
         </span>
         Help
       </div>
-      <div title="Cart" className="d-flex text-light cart align-items-center">
-        <span className="bg-danger cartitems text-light rounded-circle">
-          {items}
-        </span>
-        <span className="fs-5 fw-bolder mx-1 ">
-          <BsCart4 />
-        </span>
-        Cart
-      </div>
+      {itemLength > 0 ? (
+        <div title="Cart" className="d-flex text-light cart align-items-center">
+          <span className="bg-danger cartitems text-light rounded-circle">
+            {itemLength}
+          </span>
+          <span className="fs-5 fw-bolder mx-1 ">
+            <BsCart4 />
+          </span>
+          Cart
+        </div>
+      ) : (
+        <div title="Cart" className="d-flex text-light cart align-items-center">
+          <span className="bg-danger cartitems text-light rounded-circle">
+            0
+          </span>
+          <span className="fs-5 fw-bolder mx-1 ">
+            <BsCart4 />
+          </span>
+          Cart
+        </div>
+      )}
     </div>
   );
 };

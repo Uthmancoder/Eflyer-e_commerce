@@ -9,6 +9,12 @@ import * as bootstrap from "bootstrap";
 import { increaseItem, decreaseItem } from "../Redux/MySlice";
 
 const BackgroundImg = (props) => {
+  // useEffect(() => {
+    const cartItem = JSON.parse(localStorage.getItem("NewcartItems"));
+    const itemLength = cartItem ? cartItem.length : 0;
+  // }, []);
+ 
+  // const itemLength = cartItem ? cartItem.length : 0;
   const mystate = useSelector((state) => state.mySlice);
   console.log(mystate);
   const items = mystate.Item;
@@ -180,7 +186,7 @@ const BackgroundImg = (props) => {
             <div
               title="Account"
               id="account"
-              className="d-flex text-light align-items-center "
+              className="d-flex account text-light align-items-center "
             >
               <span className="fs-4 fw-bolder mx-1">
                 {" "}
@@ -202,15 +208,33 @@ const BackgroundImg = (props) => {
               title="Cart"
               className="d-flex text-light cart align-items-center"
             >
-              <Link to="/cart" className="cart">
-                <span className="bg-danger cartitems text-light rounded-circle">
-                  {items}
-                </span>
-                <span className="fs-5 fw-bolder mx-1 ">
-                  <BsCart4 />
-                </span>
-                Cart
-              </Link>
+              {itemLength > 0 ? (
+                <Link to="/cart"
+                  title="Cart"
+                  className="d-flex text-light cart align-items-center"
+                >
+                  <span className="bg-danger cartitems text-light rounded-circle">
+                    {itemLength}
+                  </span>
+                  <span className="fs-5 fw-bolder mx-1 ">
+                    <BsCart4 />
+                  </span>
+                  Cart
+                </Link>
+              ) : (
+                <Link to="/cart"
+                  title="Cart"
+                  className="d-flex text-light cart align-items-center"
+                >
+                  <span className="bg-danger cartitems text-light rounded-circle">
+                    0
+                  </span>
+                  <span className="fs-5 fw-bolder mx-1 ">
+                    <BsCart4 />
+                  </span>
+                  Cart
+                </Link>
+              )}
             </div>
             <button
               onClick={mediamenu}
@@ -232,27 +256,27 @@ const BackgroundImg = (props) => {
                 Men's Wear
               </Link>
             </h4>
-            <h4  className="my-5 text-center">
+            <h4 className="my-5 text-center">
               <Link to="/womens-wear" className="my-3 text-light fs-4 link">
                 Women's Wear
               </Link>
             </h4>
-            <h4  className="my-5 text-center">
+            <h4 className="my-5 text-center">
               <Link to="/electronics" className="my-3 text-light fs-4 link">
                 Electronics
               </Link>
             </h4>
-            <h4  className="my-5 text-center">
-              <Link to="/Help" className="my-3 text-light fs-4 link">
-              Account
+            <h4 className="my-5 text-center">
+              <Link to="/account" className="my-3 account text-light fs-4 link">
+                Account
               </Link>
             </h4>
-            <h4  className="my-5 text-center">
+            <h4 className="my-5 text-center">
               <Link to="/Help" className="my-3 text-light fs-4 link">
-              Accesories
+                Accesories
               </Link>
             </h4>
-            <h4  className="my-5 text-center">
+            <h4 className="my-5 text-center">
               <Link to="/account" className="my-3 text-light fs-4 link">
                 Help
               </Link>

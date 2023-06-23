@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increaseItem, decreaseItem } from "../Redux/MySlice";
+import { useNavigate } from "react-router-dom";
 
 const CurrentGoods = () => {
   const [goods, setGoods] = useState([]);
   const [itemsToCart, setItemsToCart] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  // const [cartItems, setCartItems] = useState([]);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.mySlice);
   const items = state.Item;
   const [selectedSize, setSelectedSize] = useState("");
-  const [sizeandQuantity, setSizeandQuantity] = useState([]);
+  const [sizeAndQuantity, setSizeAndQuantity] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState("");
-  const [updatedCart, setupdatedCart] = useState("")
+  const Navigate = useNavigate();
 
   // Fetching Items from the database
   useEffect(() => {
@@ -76,12 +77,12 @@ const CurrentGoods = () => {
     const sizeQuant = [
       {
         selectedSize: selectedSize,
-        quantity: itemsToCart[selectedIndex] ,
+        quantity: itemsToCart[selectedIndex],
         image: selectedImage,
       },
     ];
-    setSizeandQuantity(sizeQuant);
-    localStorage.setItem("size&Quantity", JSON.stringify(sizeQuant));
+    setSizeAndQuantity(sizeQuant);
+    localStorage.setItem("size&Quantity", JSON.stringify(sizeAndQuantity));
   }, [items, selectedSize, goods, selectedIndex]);
 
   const viewInCart = (index) => {
@@ -93,15 +94,20 @@ const CurrentGoods = () => {
       quantity: itemsToCart[selectedIndex],
       description: selectedItem.title,
     };
-    console.log(newItem);
-  
-    // Save the new item to localStorage
-    const updatedItems = JSON.parse(localStorage.getItem("NewcartItems")) || [];
-    updatedItems.push(newItem);
-    localStorage.setItem("NewcartItems", JSON.stringify(updatedItems));
+    // console.log(newItem);
+
+    if (!newItem.selectedSize || !newItem.quantity) {
+      alert("select size and quantity for your product");
+    } else {
+      // Save the new item to localStorage
+      const updatedItems =
+        JSON.parse(localStorage.getItem("NewcartItems")) || [];
+      updatedItems.push(newItem);
+      localStorage.setItem("NewcartItems", JSON.stringify(updatedItems));
+      alert("Item added to cart successfully");
+    }
   };
-  
-  
+
   const generateItems = (category) => {
     let counter = 0;
     return goods.map((el, i) => {
@@ -122,8 +128,7 @@ const CurrentGoods = () => {
                   {el.rating.rate} Count: {el.rating.count}
                 </p>
                 <p>
-                  <span className="fw-bolder">Price : </span>
-                  {el.price}
+                  <span className="fw-bolder">Price : </span>${el.price}
                 </p>
 
                 <button
@@ -136,7 +141,7 @@ const CurrentGoods = () => {
                   Add to cart
                 </button>
 
-                {/* Modal  */}
+                {/* Modal */}
                 <div
                   className="modal fade"
                   id={`exampleModal${i}`}
@@ -158,7 +163,11 @@ const CurrentGoods = () => {
                         ></button>
                       </div>
                       <div className="modal-body">
-                        <img className="img-fluid modalimg" src={el.image} />
+                        <img
+                          className="img-fluid modalimg"
+                          src={el.image}
+                          alt={el.title}
+                        />
 
                         <p>{el.title}</p>
                         <div className="d-flex align-items-center justify-content-center text-center border w-75 mx-auto p-2 my-3 rounded-2 inset-shadow">
@@ -169,7 +178,7 @@ const CurrentGoods = () => {
                                 type="radio"
                                 id={`sizeS${i}`}
                                 value="S"
-                                name="size"
+                                name={`size${i}`}
                                 className="size-input visually-hidden"
                                 onChange={handleSizeChange}
                               />
@@ -185,7 +194,7 @@ const CurrentGoods = () => {
                                 type="radio"
                                 id={`sizeL${i}`}
                                 value="L"
-                                name="size"
+                                name={`size${i}`}
                                 className="size-input visually-hidden"
                                 onChange={handleSizeChange}
                               />
@@ -201,7 +210,7 @@ const CurrentGoods = () => {
                                 type="radio"
                                 id={`sizeXL${i}`}
                                 value="XL"
-                                name="size"
+                                name={`size${i}`}
                                 className="size-input visually-hidden"
                                 onChange={handleSizeChange}
                               />
@@ -217,7 +226,7 @@ const CurrentGoods = () => {
                                 type="radio"
                                 id={`sizeXXL${i}`}
                                 value="XXL"
-                                name="size"
+                                name={`size${i}`}
                                 className="size-input visually-hidden"
                                 onChange={handleSizeChange}
                               />
@@ -295,8 +304,8 @@ const CurrentGoods = () => {
         </div>
 
         <div className="">
-          <h1 className="text-center fw-bolder fs-1">Jeweleries</h1>
-          <div className="cart-div   my-2">{generateItems("jewelery")}</div>
+          <h1 className="text-center fw-bolder fs-1">Jewelries</h1>
+          <div className="cart-div  my-2">{generateItems("jewelries")}</div>
         </div>
       </div>
     </div>

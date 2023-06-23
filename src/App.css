@@ -48,7 +48,7 @@
   justify-content: center;
   position: relative;
 }
-.mensbackground{
+.mensbackground {
   background-image: url(https://previews.123rf.com/images/stillab/stillab1709/stillab170900012/86097401-flat-lay-men-s-fashion-casual-outfits-and-accessories-on-white-wooden-background.jpg);
   height: 80vh;
   background-size: 100%;
@@ -58,7 +58,7 @@
   justify-content: center;
   position: relative;
 }
-.womenswear{
+.womenswear {
   background-image: url(https://img.freepik.com/free-photo/pretty-young-stylish-sexy-woman-pink-luxury-dress-summer-fashion-trend-chic-style-sunglasses-blue-studio-background-shopping-holding-paper-bags-talking-mobile-phone-shopaholic_285396-2957.jpg);
   height: 80vh;
   background-size: 100%;
@@ -68,7 +68,7 @@
   justify-content: center;
   position: relative;
 }
-.text{
+.text {
   font-size: 50px;
 }
 
@@ -88,7 +88,6 @@
   clip-path: polygon(0 0, 100% 0, 96% 100%, 3% 100%);
 }
 
-
 .custom_menu ul {
   margin: 0px;
   padding: 0px;
@@ -102,9 +101,8 @@
   padding: 6px 10px 0px 10px;
   text-decoration: none;
   list-style-type: none;
-
 }
-#search{
+#search {
   width: 100%;
 }
 .divv {
@@ -120,21 +118,21 @@
   color: rgb(220, 18, 18);
 }
 
-.cart{
+.cart {
   color: white;
   text-decoration: none;
 }
-.bigmenu{
+.bigmenu {
   visibility: hidden;
   width: 35px;
   height: 35px;
   position: relative;
 }
-.bigmenu :focus{
+.bigmenu :focus {
   color: black;
 }
 
-.serch{
+.serch {
   width: 30px;
   height: 30px;
   background-color: rgb(33, 37, 41);
@@ -143,7 +141,6 @@
   border-radius: 5px;
   display: none;
 }
-
 
 .abs {
   position: absolute;
@@ -173,7 +170,6 @@
   left: 0;
 }
 
-
 .buy {
   position: absolute;
   top: 75%;
@@ -181,7 +177,7 @@
   font-weight: bold;
 }
 
-.carousel-indicators{
+.carousel-indicators {
   width: 70%;
   height: 10%;
 }
@@ -209,7 +205,6 @@
 
 .ddd {
   height: 400px;
-
 }
 
 .menu {
@@ -238,7 +233,6 @@
 .cancel:focus-within .sidenav{
   display: none;
 } */
-
 
 .searchinp {
   padding: 6px;
@@ -279,16 +273,15 @@
 .footer-social-links a:hover {
   color: #f2efef;
 }
-.modalimg{
+.modalimg {
   width: 40%;
   height: 50%;
 }
 
-
-.cart{
+.cart {
   position: relative;
 }
-.cartitems{
+.cartitems {
   width: 20px;
   height: 20px;
   display: flex;
@@ -298,7 +291,6 @@
   top: -5px;
   left: -10px;
 }
-
 
 .cancel {
   position: absolute;
@@ -310,27 +302,24 @@
 .cancel:hover {
   color: white;
 }
-.coct{
+.coct {
   display: flex;
   justify-content: space-evenly;
 }
-.input{
+.input {
   border: 2px inset rgb(164, 161, 161);
   background-color: #f1f1f1;
   color: rgb(89, 84, 84);
   width: 100%;
 }
-.inp{
+.inp {
   background: none;
   outline: none;
   color: white;
 }
-.inp::placeholder{
+.inp::placeholder {
   color: rgb(89, 84, 84);
 }
-
-
-
 
 .size-label {
   display: inline-block;
@@ -362,15 +351,15 @@
   padding: 0;
   border: 0;
 }
-.addmore{
+.addmore {
   width: 40px;
   height: 40px;
   border-radius: 5px;
   color: white;
   font-size: 20px;
-  background-color: rgb(33, 37, 41);  
+  background-color: rgb(33, 37, 41);
 }
-.mediamodal{
+.mediamodal {
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
@@ -380,7 +369,7 @@
   left: 0;
   display: none;
 }
-.cancelmod{
+.cancelmod {
   font-size: 30px;
   border: none;
   background: none;
@@ -390,30 +379,30 @@
   right: 8%;
   top: 0;
 }
-.link{
+.link {
   text-decoration: none;
 }
 @media (max-width: 920px) {
   .footer {
-      text-align: center;
+    text-align: center;
   }
 
   .footer-title {
-      margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 
   .footer-links,
   .footer-social-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .footer-links li,
   .footer-social-links li {
-      margin-right: 15px;
+    margin-right: 15px;
   }
-  .background{
+  .background {
     width: 100%;
     float: left;
     /* background-image: url(https://img.freepik.com/free-photo/flat-lay-black-friday-tags-with-shopping-cart_23-2148285102.jpg?size=626&ext=jpg&ga=GA1.1.1567510239.1685567548&semt=ais); */
@@ -424,79 +413,241 @@
     align-items: center;
     justify-content: center;
   }
-  #account{
-  visibility: hidden;
-  }
-  #help{
+  #account {
     visibility: hidden;
   }
-  .cart{
+  #help {
     visibility: hidden;
   }
-  .newnav{
+  .cart {
+    visibility: hidden;
+  }
+  .newnav {
     padding: 10px;
   }
-  .menu{
-  visibility: hidden;
+  .menu {
+    visibility: hidden;
   }
 
-  .logo{
+  .logo {
     position: absolute;
     left: 2%;
     top: 15%;
   }
-  .sear{
+  .sear {
     width: 50%;
     position: absolute;
     top: 10%;
   }
-  #search{
-  width: 150px;
-  left: 30%;
+  #search {
+    width: 150px;
+    left: 30%;
   }
-  .searchbtn{
-   visibility: hidden;
+  .searchbtn {
+    visibility: hidden;
   }
-  .bigmenu{
+  .bigmenu {
     visibility: visible;
   }
-  .searchlogo{
+  .searchlogo {
     display: none;
   }
 }
 @media (max-width: 800px) {
-  .custom_menu{
-   visibility: hidden;
+  .custom_menu {
+    visibility: hidden;
   }
-  .account{
+  .account {
     display: none;
   }
-  .help{
+  .help {
     display: none;
   }
-  .newnav{
+  .newnav {
     position: fixed;
     top: 0;
     background-color: rgb(255, 157, 34);
-    width: 100% ;
+    width: 100%;
   }
-
 }
 
 /* cart styles */
-.biggs{
+.biggs {
   width: 100%;
   height: 100%;
 }
 
-.break{
-  margin-top: -5px;
+.break {
+  margin-top: 0;
   background-color: #ccc;
 }
-.checkout{
+.checkout {
   height: fit-content;
-    background-color: white;
+  background-color: white;
 }
-.shoppingitems{
-  background-color: #f2efef;
+.shoppingitems {
+}
+/* background-color: #f2efef;                                */
+.cartimage {
+  width: 10%;
+  border-radius: 10px;
+  border: 4px double rgb(226, 230, 237);
+  padding: 5px;
+}
+.pri {
+  margin-top: -15px;
+}
+.incre {
+  width: 30px;
+  height: 30px;
+  background-color: #2d2a2a;
+  border-radius: 5px;
+  color: white;
+}
+.noitems {
+  width: 100%;
+  height: 70vh;
+  background-image: url(https://captabs.com/images/Empty_Cart_Image_new.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.deleteitem {
+  /* width: 30px;
+  height: 30px; */
+  border-radius: 5px;
+  color: rgba(246, 3, 3, 0.6);  
+  color: white;
+  position: absolute;
+  left: 13%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.deleteitem:hover{
+  background-color: rgba(238, 155, 82, 0.5);
+}
+.account{
+  cursor: pointer;
+}
+.signup_div{
+  width: 100%;
+  height: 100vh;
+}
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  color: rgb(97 97 97);
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
+  width: 27rem;
+  background-clip: border-box;
+}
+
+.header {
+  position: relative;
+  background-clip: border-box;
+  background-color: #1e88e5;
+  background-image: linear-gradient(to top right,#1e88e5,#42a5f5);
+  margin: 10px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  color: #fff;
+  box-shadow: 0 0 #0000,0 0 #0000,0 0 #0000,0 0 #0000,rgba(33,150,243,.4);
+  height: 7rem;
+  letter-spacing: 0;
+  line-height: 1.375;
+  font-weight: 600;
+  font-size: 1.9rem;
+  font-family: Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputs {
+  padding: 1.5rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 200px;
+  width: 100%;
+  height: 2.75rem;
+  position: relative;
+}
+
+input {
+  border: 1px solid rgba(128, 128, 128, 0.61);
+  outline: 0;
+  color: rgb(69 90 100);
+  font-weight: 400;
+  font-size: .9rem;
+  line-height: 1.25rem;
+  padding: 0.95rem;
+  background-color: transparent;
+  border-radius: .375rem;
+  width: 100%;
+  height: 100%;
+}
+
+input:focus {
+  border: 1px solid #1e88e5;
+}
+
+.checkbox-container {
+  margin-left: -0.625rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+
+.checkbox-text {
+  cursor: pointer;
+}
+
+.sigin-btn {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: .75rem;
+  line-height: 1rem;
+  text-align: center;
+  padding: .75rem 1.5rem;
+  background-color: #1e88e5;
+  background-image: linear-gradient(to top right,#1e88e5,#42a5f5);
+  border-radius: .5rem;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  color: #fff;
+}
+
+.signup-link {
+  line-height: 1.5;
+  font-weight: 300;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-link a, .forget {
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: .875rem;
+  margin-left: .25rem;
+  color: #1e88e5;
+}
+
+.forget {
+  text-align: right;
+  font-weight: 600;
 }
