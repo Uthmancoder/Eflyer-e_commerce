@@ -4,6 +4,7 @@ import { BsFillPersonFill, BsCart4 } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { FiHelpCircle } from "react-icons/fi";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import * as bootstrap from "bootstrap";
@@ -13,6 +14,7 @@ const BackgroundImg = (props) => {
   const [currentuser, setcurrentuser] = useState([]);
   const [goods, setGoods] = useState([]);
   const [searchitem, setsearchitem] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Update the input div's height based on the input value
@@ -21,6 +23,9 @@ const BackgroundImg = (props) => {
   }, [searchitem]);
 
   // used this for searching items
+  const [filteredGoods, setFilteredGoods] = useState([]);
+  const [searchNotFound, setSearchNotFound] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,20 +48,30 @@ const BackgroundImg = (props) => {
         console.error("Error fetching data:", error);
       }
     };
-  });
+
+    fetchData();
+  }, []);
+
   const searchItems = () => {
     const lowercaseSearchItem = searchitem.toLowerCase();
-  
     const foundItems = goods.filter((item) =>
-      item.description.toLowerCase().includes(lowercaseSearchItem)
+      item.category.toLowerCase().includes(lowercaseSearchItem)
     );
-  
-    console.log(foundItems);
-    setGoods(foundItems);
+
+    if (foundItems.length === 0) {
+      setSearchNotFound(true);
+      setFilteredGoods([]);
+    } else {
+      setSearchNotFound(false);
+      setFilteredGoods(foundItems);
+      navigate(`/searchitem/${searchitem}`); // Navigate to the search results page
+    }
   };
-  
-  
-  
+
+  useEffect(() => {
+    console.log(filteredGoods);
+  }, [filteredGoods]);
+
   // fetching here for the sake of username inorder to get the user that added items to cart
   useEffect(() => {
     axios
@@ -119,15 +134,6 @@ const BackgroundImg = (props) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const carousel = new bootstrap.Carousel(
-  //     document.getElementById("carouselExampleIndicators")
-  //   );
-
-  //   return () => {
-  //     carousel.dispose();
-  //   };
-  // }, []);
 
   useEffect(() => {
     function handleScroll() {
@@ -251,7 +257,15 @@ const BackgroundImg = (props) => {
                   <button className="serch">
                     <AiOutlineSearch />
                   </button>
-                  <div className="suggestion  bg-light ">{searchitem}</div>
+                  <div className="suggestion  bg-light ">
+                    {" "}
+                   <div> {searchitem}</div>
+                    {searchNotFound
+                      ? "Not found"
+                      : filteredGoods.map((item) => (
+                          <div key={item.id}>{item.name}</div>
+                        ))}
+                  </div>
                 </div>
 
                 <button
@@ -261,7 +275,6 @@ const BackgroundImg = (props) => {
                   Search
                 </button>
               </div>
-             
             </div>
             <Link
               to={currentuser.length > 0 ? "/" : "/login"}
