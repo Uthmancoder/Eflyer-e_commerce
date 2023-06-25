@@ -76,16 +76,16 @@ const Cart = () => {
       <NavBar />
       {itemLength > 0 ? (
         <div className="container-fluid d-flex p-5 bigs bg-light ">
-          <div className="row">
-            <div className="card border-0 mx-4 shoppingitems rounded-2 p-2 shadow col-12 col-sm-8">
+          <div className="d-flex ">
+            <div className="card border-0 mx-4 shoppingitems rounded-2 p-2 shadow user_item">
               <h5 className="fw-bolder text-secondary">Cart ({itemLength})</h5>
               <hr className="break text-secondary" />
               {cartItem &&
                 cartItem.map((el, i) => {
                   return (
                     <div key={i}>
-                      <div className="d-flex">
-                        <div className="d-flex align-items-center my-2">
+                      <div className="d-flex justify-content-between">
+                        <div className="d-flex align-items-center  my-2">
                           <div className="cartimage">
                             <img
                               src={el.image}
@@ -106,8 +106,8 @@ const Cart = () => {
                             <p className="text-danger pri">Eflyer Expres 🚀</p>
                           </div>
                         </div>
-                        <div className="mx-2">
-                          <p className="mx-2 fw-bold">${el.price} </p>
+                        <div className="mx-4">
+                          <p className="mx-3 fw-bold">${el.price} </p>
                           <div className="d-flex align-items-center">
                             <button
                               className="incre"
@@ -131,7 +131,7 @@ const Cart = () => {
                   );
                 })}
             </div>
-            <div className="w-25   checkout  m-2 shadow rounded-2 p-2 col-12 c-l-md-4">
+            <div className="  checkout  p-2 shadow rounded-3">
               <h5>Cart Summary</h5>
               <hr />
               <div className="d-flex align-items-center justify-content-between">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increaseItem, decreaseItem } from "../Redux/MySlice";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const CurrentGoods = () => {
   const [goods, setGoods] = useState([]);
@@ -15,6 +16,8 @@ const CurrentGoods = () => {
   const [sizeAndQuantity, setSizeAndQuantity] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState("");
   const Navigate = useNavigate();
+  const [currentdata, setcurrentdata] = useState([])
+  const [currentuser, setcurrentuser] = useState([])
 
   // Fetching Items from the database
   useEffect(() => {
@@ -26,6 +29,30 @@ const CurrentGoods = () => {
         console.log(jsonData);
       });
   }, []);
+
+
+  // fetching here for the sake of username inorder to get the user that added items to cart
+  useEffect(() => {
+    axios
+      .get("http://localhost:1243/users")
+      .then((res) => res.data)
+      .then((data) => {
+        setcurrentuser(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+  
+  useEffect(() => {
+    if (currentuser.length > 0) {
+      const currentUser = currentuser[0].username; // Assuming there's only one user in the array
+      console.log(currentUser);
+    }
+  }, [currentuser]);
+  
+  
 
   // Open Modal to add to cart
   const handleAddToCart = (index) => {
@@ -60,6 +87,20 @@ const CurrentGoods = () => {
       return updatedCart;
     });
   };
+ 
+  useEffect(() => {
+    axios
+      .get("http://localhost:1243/userItems")
+      .then((res) => res.data)
+      .then((data) => {
+        setcurrentdata(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+  
 
   const decreaseQuantity = (index) => {
     if (itemsToCart[index] > 0) {
@@ -94,7 +135,6 @@ const CurrentGoods = () => {
       quantity: itemsToCart[selectedIndex],
       description: selectedItem.title,
     };
-    // console.log(newItem);
 
     if (!newItem.selectedSize || !newItem.quantity) {
       alert("select size and quantity for your product");

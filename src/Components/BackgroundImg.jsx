@@ -5,15 +5,84 @@ import { Link } from "react-router-dom";
 import { FiHelpCircle } from "react-icons/fi";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector } from "react-redux";
+import axios from "axios";
 import * as bootstrap from "bootstrap";
 import { increaseItem, decreaseItem } from "../Redux/MySlice";
 
 const BackgroundImg = (props) => {
+  const [currentuser, setcurrentuser] = useState([]);
+  const [goods, setGoods] = useState([]);
+  const [searchitem, setsearchitem] = useState("");
+
+  useEffect(() => {
+    // Update the input div's height based on the input value
+    const inputDiv = document.querySelector(".suggestion");
+    inputDiv.style.display = searchitem ? "block" : "none";
+  }, [searchitem]);
+
+  // used this for searching items
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch data from Fake Store API
+        const fakeStoreResponse = await fetch(
+          "https://fakestoreapi.com/products"
+        );
+        const fakeStoreJsonData = await fakeStoreResponse.json();
+
+        // Fetch data from the local JSON file
+        const localJsonResponse = await fetch("http://localhost:1243/Items");
+        const localJsonData = await localJsonResponse.json();
+
+        // Combine the datasets
+        const combinedDataset = [...localJsonData, ...fakeStoreJsonData];
+
+        setGoods(combinedDataset);
+        console.log(combinedDataset);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  });
+  const searchItems = () => {
+    const lowercaseSearchItem = searchitem.toLowerCase();
+  
+    const foundItems = goods.filter((item) =>
+      item.description.toLowerCase().includes(lowercaseSearchItem)
+    );
+  
+    console.log(foundItems);
+    setGoods(foundItems);
+  };
+  
+  
+  
+  // fetching here for the sake of username inorder to get the user that added items to cart
+  useEffect(() => {
+    axios
+      .get("http://localhost:1243/users")
+      .then((res) => res.data)
+      .then((data) => {
+        setcurrentuser(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (currentuser.length > 0) {
+      const currentUser = currentuser[0].username; // Assuming there's only one user in the array
+      console.log(currentUser);
+    }
+  }, [currentuser]);
+
   // useEffect(() => {
-    const cartItem = JSON.parse(localStorage.getItem("NewcartItems"));
-    const itemLength = cartItem ? cartItem.length : 0;
+  const cartItem = JSON.parse(localStorage.getItem("NewcartItems"));
+  const itemLength = cartItem ? cartItem.length : 0;
   // }, []);
- 
+
   // const itemLength = cartItem ? cartItem.length : 0;
   const mystate = useSelector((state) => state.mySlice);
   console.log(mystate);
@@ -165,35 +234,49 @@ const BackgroundImg = (props) => {
               </div>
               <h1 className="logo fw-bolder text-light">Eflyer</h1>
             </div>
-            <div className="d-flex w-50 align-items-center sear">
-              <div className="input  rounded-2 d-flex align-items-center">
-                <span className="fs-5  searchlogo fw-bolder mx-1">
-                  <AiOutlineSearch />
-                </span>
-                <input
-                  type="search"
-                  name="searchitems"
-                  id="search"
-                  className="border-0 w-100 inp bg-none p-2"
-                  placeholder="Search products, brands and category"
-                />
-                <button className="serch">
-                  <AiOutlineSearch />
+            <div className="d-grid w-50 align-items-center sear">
+              <div className="d-flex align-items-center">
+                <div className="input  rounded-2 d-flex align-items-center">
+                  <span className="fs-5  searchlogo fw-bolder mx-1">
+                    <AiOutlineSearch />
+                  </span>
+                  <input
+                    onChange={(e) => setsearchitem(e.target.value)}
+                    type="search"
+                    name="searchitems"
+                    id="search"
+                    className="border-0 w-100 text-dark inp bg-none p-2"
+                    placeholder="Search products, brands and category"
+                  />
+                  <button className="serch">
+                    <AiOutlineSearch />
+                  </button>
+                  <div className="suggestion  bg-light ">{searchitem}</div>
+                </div>
+
+                <button
+                  onClick={searchItems}
+                  className="btn btn-danger  searchbtn mx-3"
+                >
+                  Search
                 </button>
               </div>
-              <button className="btn btn-danger searchbtn mx-3">Search</button>
+             
             </div>
-            <div
-              title="Account"
+            <Link
+              to={currentuser.length > 0 ? "/" : "/login"}
+              title={
+                currentuser.length > 0 ? currentuser[0].username : "Account"
+              }
               id="account"
-              className="d-flex account text-light align-items-center "
+              className="d-flex account text-light align-items-center"
             >
               <span className="fs-4 fw-bolder mx-1">
                 {" "}
                 <BsFillPersonFill />
               </span>
-              Account
-            </div>
+              {currentuser.length > 0 ? currentuser[0].username : "Account"}
+            </Link>
             <div
               title="Help"
               id="help"
@@ -209,7 +292,8 @@ const BackgroundImg = (props) => {
               className="d-flex text-light cart align-items-center"
             >
               {itemLength > 0 ? (
-                <Link to="/cart"
+                <Link
+                  to="/cart"
                   title="Cart"
                   className="d-flex text-light cart align-items-center"
                 >
@@ -222,7 +306,8 @@ const BackgroundImg = (props) => {
                   Cart
                 </Link>
               ) : (
-                <Link to="/cart"
+                <Link
+                  to="/cart"
                   title="Cart"
                   className="d-flex text-light cart align-items-center"
                 >

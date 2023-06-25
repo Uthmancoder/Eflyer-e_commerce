@@ -4,23 +4,23 @@ import * as yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SignUser = () => {
   const [currentdata, setcurrentdata] = useState([]);
 
   useEffect(() => {
-  axios
-    .get("http://localhost:1243/users")
-    .then((res) => res.data)
-    .then((data) => {
-      setcurrentdata(data);
-      console.log(data);
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-}, []);
-
+    axios
+      .get("http://localhost:1243/users")
+      .then((res) => res.data)
+      .then((data) => {
+        setcurrentdata(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -52,8 +52,10 @@ const SignUser = () => {
     onSubmit: (values) => {
       console.log(values);
       let emailExist = currentdata.find((el) => el.email === values.email);
-      let usernameExist = currentdata.find((el) => el.username === values.username);
-    
+      let usernameExist = currentdata.find(
+        (el) => el.username === values.username
+      );
+
       if (emailExist) {
         toast.error("Email already in use");
       } else if (usernameExist) {
@@ -70,20 +72,21 @@ const SignUser = () => {
             toast.error("Registration failed");
           });
       }
-    }
-    
+    },
   });
 
   console.log(formik.errors);
 
   return (
-    <div className="signup_div bg-dark pt-5">
+    <div className="signup_div bg-dark pt-2">
       <form
         onSubmit={formik.handleSubmit}
         action=""
         className="form rounded-3 bg-light shadow mx-auto  rounded-2 shadow p-3"
       >
-        <h1 className="text-light header text-center fw-bolder fs-1">Sign Up</h1>
+        <h1 className="text-light header text-center fw-bolder fs-1">
+          Sign Up
+        </h1>
         <div>
           <label htmlFor="username">Username</label>
           <input
@@ -137,6 +140,9 @@ const SignUser = () => {
           <small className="text-danger">{formik.errors.password}</small>
         </div>
         <button className="sigin-btn mt-3">Sign Up</button>
+        <p className="signup-link">
+          Alredy have an account <Link to="/login" >Sign In</Link>
+        </p>
         <ToastContainer />
       </form>
     </div>

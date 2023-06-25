@@ -201,13 +201,6 @@
       "image": "https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/G/78157_1536106308.jpg"
     }
   ],
-  "users": [
-    {
-      "username": "Hergbolahan",
-      "name": "Adebayo",
-      "email": "chiboyymoney@gmail.com",
-      "password": "chiboy",
-      "id": 1
-    }
-  ]
+  "users": [],
+  "userItems": []
 }
