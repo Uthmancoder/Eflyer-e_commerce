@@ -9,6 +9,7 @@ import Cart from "./Components/Cart";
 import Signup from "./Components/Signup";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./Components/Login";
+import SearchItem from "./Components/SearchItem";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Route path="/cart" element={<Cart/>} />
       <Route path="/signup" element={<Signup/>} />
       <Route path="/login" element={<Login/>} />
+      <Route path="/searcheditems" element={<SearchItem/>} />
       </Routes>
     </div>
   );

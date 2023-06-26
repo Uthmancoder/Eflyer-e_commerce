@@ -13,7 +13,7 @@ const NavBar = () => {
   const items = mystate.Item;
 
   return (
-    <div className="w-100 bg-dark d-flex align-items-center justify-content-evenly">
+    <div className="w-100 bg-dark d-flex align-items-center mynav justify-content-evenly">
       <div className="">
         <h1 className="logo fw-bolder text-light">Eflyer</h1>
       </div>

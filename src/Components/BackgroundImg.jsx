@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FiHelpCircle } from "react-icons/fi";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import * as bootstrap from "bootstrap";
 import { increaseItem, decreaseItem } from "../Redux/MySlice";
@@ -14,7 +14,11 @@ const BackgroundImg = (props) => {
   const [currentuser, setcurrentuser] = useState([]);
   const [goods, setGoods] = useState([]);
   const [searchitem, setsearchitem] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const mystate = useSelector((state) => state.mySlice);
+  console.log(mystate);
+  const items = mystate.Item;
+  console.log(items);
 
   useEffect(() => {
     // Update the input div's height based on the input value
@@ -26,6 +30,7 @@ const BackgroundImg = (props) => {
   const [filteredGoods, setFilteredGoods] = useState([]);
   const [searchNotFound, setSearchNotFound] = useState(false);
 
+  // fetching items from fake store api and my local server
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -52,25 +57,31 @@ const BackgroundImg = (props) => {
     fetchData();
   }, []);
 
-  const searchItems = () => {
-    const lowercaseSearchItem = searchitem.toLowerCase();
-    const foundItems = goods.filter((item) =>
-      item.category.toLowerCase().includes(lowercaseSearchItem)
-    );
+  // search button
+ // search button
+const searchItems = () => {
+  const lowercaseSearchItem = searchitem.toLowerCase();
+  const foundItems = goods.filter((item) =>
+    item.category.toLowerCase().startsWith(lowercaseSearchItem)
+  );
+  setSearchNotFound(foundItems.length === 0);
+  setFilteredGoods(foundItems);
 
-    if (foundItems.length === 0) {
-      setSearchNotFound(true);
-      setFilteredGoods([]);
-    } else {
-      setSearchNotFound(false);
-      setFilteredGoods(foundItems);
-      navigate(`/searchitem/${searchitem}`); // Navigate to the search results page
-    }
-  };
+  localStorage.setItem("searchitem", JSON.stringify(lowercaseSearchItem)); // Save lowercase search item to localStorage
+  localStorage.setItem("filteredgoods", JSON.stringify(foundItems)); // Save found items to localStorage
 
-  useEffect(() => {
-    console.log(filteredGoods);
-  }, [filteredGoods]);
+  if (foundItems.length > 0) {
+    navigate("/searcheditems");
+  } else {
+    navigate("/");
+  }
+};
+
+useEffect(() => {
+  console.log(filteredGoods);
+  localStorage.setItem("filteredgoods", JSON.stringify(filteredGoods));
+}, [filteredGoods]);
+
 
   // fetching here for the sake of username inorder to get the user that added items to cart
   useEffect(() => {
@@ -93,16 +104,10 @@ const BackgroundImg = (props) => {
     }
   }, [currentuser]);
 
-  // useEffect(() => {
   const cartItem = JSON.parse(localStorage.getItem("NewcartItems"));
   const itemLength = cartItem ? cartItem.length : 0;
-  // }, []);
 
-  // const itemLength = cartItem ? cartItem.length : 0;
-  const mystate = useSelector((state) => state.mySlice);
-  console.log(mystate);
-  const items = mystate.Item;
-  console.log(items);
+
   useEffect(() => {
     const sidebar = document.querySelector(".sidenav");
     function handleMenuClick() {
@@ -134,7 +139,6 @@ const BackgroundImg = (props) => {
     };
   }, []);
 
-
   useEffect(() => {
     function handleScroll() {
       const newnav = document.querySelector(".newnav");
@@ -162,6 +166,7 @@ const BackgroundImg = (props) => {
   const mediamenu = () => {
     alert("cool");
   };
+
 
   const classes = "carousel slide background " + props.className;
 
@@ -259,12 +264,14 @@ const BackgroundImg = (props) => {
                   </button>
                   <div className="suggestion  bg-light ">
                     {" "}
-                   <div> {searchitem}</div>
-                    {searchNotFound
-                      ? "Not found"
-                      : filteredGoods.map((item) => (
-                          <div key={item.id}>{item.name}</div>
-                        ))}
+                    {searchitem && !searchNotFound ? (
+                      filteredGoods.map((item) => (
+                        
+                        <div key={item.id}>{item.name} {searchitem}</div>
+                      ))
+                    ) : (
+                      <div>{searchitem} </div>
+                    )}
                   </div>
                 </div>
 
@@ -446,6 +453,8 @@ const BackgroundImg = (props) => {
         </button>
         <button className="btn btn-dark buy py-2 px-4 fw-bold">Buy Now</button>
       </div>
+
+     
     </div>
   );
 };
